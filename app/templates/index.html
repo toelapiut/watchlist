@@ -1,14 +1,6 @@
+{%extends 'base.html'%}
 {% import 'macros.html' as macro%}
-<!DOCTYPE html>
-<html>
-	<head>
-		{%if title%}
-		<title>{{title}}</title>
-		{%else%}
-		<title>Welcome to the best movie review webisite...</title>
-		{%endif%}
-	</head>
-	<body>
+{%block content%}
 
         <!-- Popular movie -->
         <h3> Popular Movies</h3>
@@ -25,5 +17,4 @@
         <ul>
             {{ macro.displayMovieList(now_showing)}}
         </ul>
-	</body>
-</html>
+{%endblock%}
