@@ -1,5 +1,5 @@
 {%extends 'base.html' %}
-
+{%import 'macros.html' as macro%}
 <!-- Content block-->
 {%block content%}
 <div class="container">
@@ -9,11 +9,24 @@
 		<div class= 'col-xs-6 col-md-6 col-lg-6 posterPath' style=" display:inline;height: 800px; background:url({{movie.image}}) no-repeat center center">
 			
 		</div>
-		<div class= 'col-xs-6 col-md-6 col-lg-6 movie-details'>
+		
+		<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-datails">
 			<h3>{{movie.title}}</h3>
 			<p class="overview">{{movie.overview}}</p>
-			<p class="ratings"><b>{{movie.vote_average}}</b> - <i>{{movie.vote_count}} votes</i> </p>
+			<p class="ratings"><b>{{movie.vote_average}}</b> - <i>{{movie.vote_count}} votes </i></p>
+			<a href="/movie/review/new/{{movie.id}} " class="ratings">Write a new review</a>
 		</div>
+		<div class="row">
+			<h1>reviews</h1>
+			<hr>
+			{%if reviews%}
+			{{macro.displayReviews(reviews)}}
+			{%else%}
+			<h3 class="text-center">This Movie has no reviews</h3>
+			<a href="/movie/review/new/{{movie.id}}" class="btn btn-success btn-lg text-center">Write a review</a>
+			{%endif%}
+		</div>
+
 	</div>
 </div>
 
