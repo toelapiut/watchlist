@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from . import main
+from flask_login import login_required
 
 #Two dots (..) is used to import packages higer up  in the project
 from ..request import get_movies,get_movie, search_movie
@@ -50,6 +51,7 @@ def search(movie_name):
 	return render_template('search.html', movies = searched_movies)
 
 @main.route('/movie/review/new/<int:id>', methods = ['GET', 'POST'])
+@login_required
 def new_review(id):
 	form = ReviewForm()
 	movie = get_movie(id)
@@ -63,4 +65,7 @@ def new_review(id):
 
 	title = f'{movie.title} review'
 	return render_template('new_review.html', title = title, review_form = form, movie = movie )
+
+
+
 
